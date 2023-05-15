@@ -70,3 +70,5 @@ certificates/
 # Logs
 ng.log
 dotnet.log
+
+Migrations/
