@@ -6,6 +6,9 @@ NGLOG=ng.log
 POSTGRES=postgresDAW
 POSTGRESPORT=5432
 
+docker version;
+retVal=$?;
+
 if [ $retVal -ne 0 ]; then
 	echo "Docker must be installed to run this script. Install Docker and try again.";
 	exit 1;
@@ -21,7 +24,7 @@ fi
 docker start $POSTGRES > /dev/null;
 
 # Rulare server .NET
-dotnet run > /dev/null 2>&1 >> $DOTNETLOG &
+dotnet watch run > /dev/null 2>&1 >> $DOTNETLOG &
 echo "Running .NET server..."
 
 # Rulare server Angular

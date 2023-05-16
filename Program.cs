@@ -1,7 +1,16 @@
+using Data;
+using Microsoft.EntityFrameworkCore;
+using proiectDAW.Helpers.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+builder.Services.AddUtils();
 
 var app = builder.Build();
 
