@@ -24,8 +24,8 @@ fi
 docker start $POSTGRES > /dev/null;
 
 # Rulare server .NET
-dotnet watch run > /dev/null 2>&1 >> $DOTNETLOG &
-echo "Running .NET server..."
+dotnet watch > /dev/null 2>&1 >> $DOTNETLOG &
+echo "Running .NET server..." 
 
 # Rulare server Angular
 cd $ANGULAR && nohup ng serve > /dev/null 2>&1 >> $NGLOG &

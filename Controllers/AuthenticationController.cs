@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using proiectDAW.Models;
+using proiectDAW.Models.DTO;
 using proiectDAW.Services.UserService;
 
 namespace proiectDAW.Controllers {
@@ -13,9 +14,24 @@ namespace proiectDAW.Controllers {
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(User user) {
-            await _userService.Create(user);
-            return Ok();
-        }   
+        public IActionResult Register(User user) {
+            if (_userService.IsEmailAlreadyUsed(user.email)) {
+                return BadRequest(new { message = "Email already exists" });
+            }
+            var registeredUser = _userService.Create(user).Data;
+            return Ok(registeredUser);
+        }  
+
+        [HttpPost("login")]
+        public IActionResult Login(LoginDto loginDto) {  
+            var result = _userService.Authenticate(loginDto);
+            
+            System.Console.WriteLine(result);
+            if (result.Success == false) {
+                return BadRequest(new { message = result.Message });
+            }
+
+            return Ok(result.Data);  
+        } 
     }
 }

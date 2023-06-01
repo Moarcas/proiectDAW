@@ -27,4 +27,12 @@ public class UserRepository : IUserRepository {
         }
         return false;
     }
+
+    public User GetByEmail(string email) {
+        return _table.FirstOrDefault(user => user.email == email)!;
+    }
+
+    public bool EmailExists(string email) {
+        return _table.Any(user => user.email == email);
+    }
 }
