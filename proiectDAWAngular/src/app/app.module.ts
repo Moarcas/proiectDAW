@@ -8,12 +8,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
+    NavbarComponent,
     ErrorBoxComponent
   ],
   imports: [
