@@ -11,12 +11,8 @@ public class QuestionRepository : IQuestionRepository {
         _context = context;
     }
 
-    public async Task<Question> GetById(Guid id) {
+    public async Task<Question?> GetById(Guid id) {
         var question = await _context.Questions.FirstOrDefaultAsync(q => q.id == id);
-
-        if (question == null)
-            throw new Exception("Question not found");
-
         return question;
     }
 
@@ -40,7 +36,7 @@ public class QuestionRepository : IQuestionRepository {
 
     public async Task Delete(Guid id) {
         var question = await GetById(id);
-        _context.Questions.Remove(question);
+        _context.Questions.Remove(question!);
     }
 
     public async Task<bool> SaveChanges() {
