@@ -1,0 +1,24 @@
+<div class="question-form-container">
+  <div class="question-form-header">
+    <h2 class="header-text">Ask a question</h2>
+  </div>
+  <form class="question-form" [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field class="question-form-field">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Ex. Problem with css" type="text" formControlName="title">
+        <mat-error *ngIf="title.invalid">{{ title | formControlErrorMessage : title.errors }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="question-form-field">
+        <mat-label>Question</mat-label>
+        <textarea matInput placeholder="Ex. How to center a div?" type="text" formControlName="content"></textarea>
+        <mat-error *ngIf="content.invalid">{{ content | formControlErrorMessage : content.errors }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" class="confirm-button" type="submit">Post question</button>
+  </form>
+</div>
+

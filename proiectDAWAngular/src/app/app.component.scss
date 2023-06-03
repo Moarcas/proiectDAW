@@ -1,8 +1,11 @@
+@use "colors" as *;
+
 :host {
   display: flex;
   flex-direction: column;
   flex: 1;
   height: 100%;
+  background-color: $gray-100;
 }
 
 .content {
@@ -10,3 +13,5 @@
   flex-direction: column;
   flex: 1;
 }
+
+

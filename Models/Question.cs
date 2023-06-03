@@ -1,3 +1,5 @@
+using proiectDAW.Models.DTO;
+
 namespace proiectDAW.Models {
     public class Question {
         public Guid id { get; set; }
@@ -5,7 +7,6 @@ namespace proiectDAW.Models {
         public string title { get; set; }
         public string content { get; set; }
         public DateTime createdAt { get; set; }
-
-        public User user { get; set; }
+        public UserDto? user { get; set; }
     }
 }

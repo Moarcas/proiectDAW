@@ -32,6 +32,10 @@ public class UserRepository : IUserRepository {
         return _table.FirstOrDefault(user => user.email == email)!;
     }
 
+    public User GetById(Guid id) {
+        return _table.FirstOrDefault(user => user.id == id)!;
+    }
+
     public bool EmailExists(string email) {
         return _table.Any(user => user.email == email);
     }

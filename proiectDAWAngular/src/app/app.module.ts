@@ -9,6 +9,11 @@ import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { QuestionFormComponent } from './components/question-form/question-form.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { QuestionComponent } from './components/question/question.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     RegisterComponent,
     LoginComponent,
     NavbarComponent,
-    ErrorBoxComponent
+    ErrorBoxComponent,
+    QuestionFormComponent,
+    QuestionComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +32,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MaterialModule,
     SharedModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

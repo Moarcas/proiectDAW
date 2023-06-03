@@ -15,13 +15,12 @@ export class UserService {
   constructor(private readonly httpClient: HttpClient) {}
 
   public register(data: RegisterType) {
+    console.log("Datele trimise la server:");
     console.log(data);
     return this.httpClient
       .post<any>('api/Authentication/register', data)
       .pipe(
         map((response: any) => {
-          console.log("Raspunsul de la server:");
-          console.log(response);
           if (response) {
             localStorage.setItem('token', response.jwtToken);
             this.isAuthenticatedSubject.next(true);

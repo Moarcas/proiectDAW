@@ -1,13 +1,19 @@
+using AutoMapper;
 using proiectDAW.Models;
 using proiectDAW.Models.DTO;
 using proiectDAW.Repositories.QuestionRepository;
+using proiectDAW.Repositories.UserRepository;
 
 namespace proiectDAW.Services.QuestionService {
     public class QuestionService : IQuestionService {
         public IQuestionRepository _questionRepository;
+        public IUserRepository _userRepository;
+        public IMapper _mapper;
        
-        public QuestionService(IQuestionRepository questionRepository) {
+        public QuestionService(IQuestionRepository questionRepository, IUserRepository userRepository, IMapper mapper) {
             _questionRepository = questionRepository;
+            _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         public async Task<ResponseDto<Question>> GetById(Guid id) {
@@ -21,6 +27,12 @@ namespace proiectDAW.Services.QuestionService {
 
         public async Task<ResponseDto<List<Question>>> GetAll() {   
             List<Question> questions = await _questionRepository.GetAll();
+
+            for (int i = 0; i < questions.Count; i++) {
+                User user = _userRepository.GetById(questions[i].userId);
+                questions[i].user = _mapper.Map<UserDto>(user);
+            }
+    
             return new ResponseDto<List<Question>>(questions);
         }
 
@@ -30,7 +42,6 @@ namespace proiectDAW.Services.QuestionService {
         }
 
         public async Task<ResponseDto<Question>> AddQuestion(Question question) {
-            question.createdAt = DateTime.Now;
             await _questionRepository.Add(question);
             await _questionRepository.SaveChanges();
             return new ResponseDto<Question>(question);

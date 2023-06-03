@@ -9,9 +9,19 @@
     <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a>
   </div>
   <div class="btn rounded" *ngIf="!data.isLoggedIn">
-    <button mat-flat-button color="primary">
-      <a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a>
-    </button>
+    <a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">
+      <button mat-flat-button color="primary">Register</button>
+    </a>
+  </div>
+  <div class="btn rounded" *ngIf="data.isLoggedIn">
+    <a routerLink="/feed" routerLinkActive="active" ariaCurrentWhenActive="page">
+      <button mat-flat-button color="primary">Feed</button>
+    </a>
+  </div>
+  <div class="btn rounded" *ngIf="data.isLoggedIn">
+    <a routerLink="/add-question" routerLinkActive="active" ariaCurrentWhenActive="page">
+      <button mat-flat-button color="primary">Ask a question</button>
+    </a>
   </div>
   <div class="btn rounded" *ngIf="data.isLoggedIn">
     <button mat-flat-button color="warn" (click)="logout()"><a>Logout</a></button>
