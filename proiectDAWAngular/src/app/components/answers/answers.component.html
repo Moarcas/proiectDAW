@@ -1,0 +1,13 @@
+<div *ngIf="answers && answers.length > 0; else noAnswersMessage">
+  <!-- Display the answers -->
+  <ul>
+    <li *ngFor="let answer of answers">
+      {{ answer.content }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #noAnswersMessage>
+  <!-- Display a message when answers is null or empty -->
+  <p>No answers available for this question.</p>
+</ng-template>

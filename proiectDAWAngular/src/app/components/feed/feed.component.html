@@ -1,5 +1,9 @@
 <div class="feed-container">
   <ng-container *ngFor="let question of questions">
     <daw-question [question]="question"></daw-question>
+
+    <div class="answers-container">
+      <daw-answers [questionId]="question.id"></daw-answers>
+    </div>
   </ng-container>
 </div>

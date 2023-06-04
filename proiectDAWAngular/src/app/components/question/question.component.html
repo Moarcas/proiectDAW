@@ -1,11 +1,12 @@
 <div class="question-container">
-  <mat-card class="question-card">
+  <mat-card class="question-card" [formGroup]="answerForm">
     <mat-card-header>
       <div class="question-header">
         <div class="metadata">
           <div>
-            <mat-card-subtitle>By {{ question.user.username }}</mat-card-subtitle>
-            <mat-card-subtitle>{{ question.createdAt | date:'medium' }}</mat-card-subtitle>
+            <mat-card-subtitle>
+              By <span class="username">{{ question.user.username }}</span>
+            </mat-card-subtitle>            <mat-card-subtitle>{{ question.createdAt | date:'medium' }}</mat-card-subtitle>
           </div>
         </div>
         <div class="question-title">
@@ -17,8 +18,18 @@
     <mat-card-content>
       <p>{{ question.content }}</p>
     </mat-card-content>
+
     <mat-card-actions>
-      <button mat-raised-button color="primary" class="answer-button">Answer</button>
+      <button mat-raised-button [color]="buttonColor" class="answer-button" (click)="toggleInput()" [ngClass]="{'cancel': showInput}">
+        {{ buttonText }}
+      </button>
+      <button mat-raised-button color="primary" class="post-button" (click)="postAnswer()" *ngIf="showInput" [ngClass]="{'show': showInput}">
+        Post
+      </button>
     </mat-card-actions>
+    <mat-form-field class="answer-input" *ngIf="showInput">
+      <input matInput formControlName="answerInput" placeholder="Answer here">
+      <mat-error *ngIf="answerInput.invalid">{{ answerInput | formControlErrorMessage : answerInput.errors }}</mat-error>
+    </mat-form-field>
   </mat-card>
 </div>

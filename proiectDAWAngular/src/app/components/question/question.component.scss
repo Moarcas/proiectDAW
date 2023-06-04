@@ -30,12 +30,58 @@
   flex-direction: column;
 }
 
-.answer-button {
+.answer-button, .post-button {
   color: white;
   text-transform: uppercase;
   background-color: blue;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.8s ease;
   cursor: pointer;
 }
+
+.username {
+  color: blue;
+}
+
+.answer-input {
+  margin-top: 0;
+  opacity: 0;
+  animation: input-appear 0.8s ease forwards
+}
+
+.answer-button.cancel {
+  background-color: rgb(34, 34, 34);
+  margin-right: 10px;
+}
+
+.post-button {
+  opacity: 0;
+  animation: button-appear 0.8s ease forwards;
+}
+
+@keyframes button-appear {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes input-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

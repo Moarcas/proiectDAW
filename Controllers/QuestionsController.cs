@@ -26,7 +26,6 @@ namespace proiectDAW.Controllers {
         // Add a question
         [HttpPost("add-question")]
         public async Task<IActionResult> AddQuestion(QuestionDto questionDto) {
-            System.Console.WriteLine("AddQuestionController");
             if (HttpContext.Items.TryGetValue("userId", out object userId)) {
                 var question = new Question {
                     userId = Guid.Parse(userId.ToString()),

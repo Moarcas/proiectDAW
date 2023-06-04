@@ -33,5 +33,13 @@ namespace proiectDAW.Controllers {
 
             return Ok(result.Data);  
         } 
+
+        [HttpGet("is-logged-in")]
+        public IActionResult IsLoggedIn() {
+            if (HttpContext.Items["userId"] == null) {
+                return Unauthorized();
+            }
+            return Ok(new { message = "User is logged in" });
+        }
     }
 }

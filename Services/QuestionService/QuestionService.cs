@@ -30,7 +30,7 @@ namespace proiectDAW.Services.QuestionService {
 
             for (int i = 0; i < questions.Count; i++) {
                 User user = _userRepository.GetById(questions[i].userId);
-                questions[i].user = _mapper.Map<UserDto>(user);
+                questions[i].user = user;
             }
     
             return new ResponseDto<List<Question>>(questions);
@@ -57,11 +57,6 @@ namespace proiectDAW.Services.QuestionService {
             await _questionRepository.Delete(id);
             await _questionRepository.SaveChanges();
             return new ResponseDto<Question>(null);
-        }
-
-        public Task<ResponseDto<Question>> UpdateQuestion(Guid id, Question question)
-        {
-            throw new NotImplementedException();
         }
     }
 }

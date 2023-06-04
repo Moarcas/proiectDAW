@@ -2,7 +2,7 @@
 @use "typography-levels" as *;
 @use "sass:math" as math;
 
-$navbar-height: 80px;
+$navbar-height: 60px;
 $btn-height: 32px;
 
 :host {
@@ -10,7 +10,7 @@ $btn-height: 32px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: $navbar-height;
+  min-height: $navbar-height;
   background-color: $navbar-bkg-color;
 }
 

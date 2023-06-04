@@ -14,6 +14,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { QuestionFormComponent } from './components/question-form/question-form.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { QuestionComponent } from './components/question/question.component';
+import { AnswersComponent } from './components/answers/answers.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { QuestionComponent } from './components/question/question.component';
     ErrorBoxComponent,
     QuestionFormComponent,
     QuestionComponent,
-    FeedComponent
+    FeedComponent,
+    AnswersComponent
   ],
   imports: [
     BrowserModule,
