@@ -39,6 +39,7 @@ export class QuestionComponent {
       this.answerService.addAnswer(answer).subscribe({
         next: response => {
           this.router.navigate(['/feed']);
+          location.reload();
         },
         error: error => {
           console.log(error);

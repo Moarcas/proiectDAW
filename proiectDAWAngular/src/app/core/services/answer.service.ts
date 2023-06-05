@@ -12,7 +12,7 @@ export class AnswerService {
     return this.httpClient.get<any>(`api/Answers/${questionId}`);
   }
 
-  public addAnswer(data: AnswerType) {
+  public addAnswer(data: any) {
     console.log(data);
     return this.httpClient.post<any>('api/Answers/add-answer', data);
   }

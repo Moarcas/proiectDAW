@@ -1,13 +1,20 @@
-<div *ngIf="answers && answers.length > 0; else noAnswersMessage">
-  <!-- Display the answers -->
-  <ul>
-    <li *ngFor="let answer of answers">
-      {{ answer.content }}
-    </li>
-  </ul>
-</div>
+<div *ngIf="answers.length > 0; else noAnswersMessage">
+  <mat-card class="question-container" *ngFor="let answer of answers">
+    <mat-card-header>
+      <div class="metadata">
+        <mat-card-subtitle>{{ answer.createdAt | date:'medium' }}</mat-card-subtitle>
+      </div>
+    </mat-card-header>
 
+    <mat-card-content>
+      <div class="answer-content">
+        <mat-card-subtitle class="username">{{ answer.user.username }}:</mat-card-subtitle>
+        <p>{{ answer.content }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
 <ng-template #noAnswersMessage>
-  <!-- Display a message when answers is null or empty -->
-  <p>No answers available for this question.</p>
+  <p class="no-answers-message">No answers for this question.</p>
 </ng-template>
+
